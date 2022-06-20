@@ -23,7 +23,6 @@ struct ContentView: View {
                     .multilineTextAlignment(.leading)
                     .padding()
                 Spacer()
-                
                 HStack{
                     Button(action: {
                         print("choice 1")
