@@ -5,7 +5,7 @@
 //  Created by Juyon on 7/6/22.
 //
 
-import Foundation
+import SwiftUI
 
 class GameViewModel: ObservableObject {
     // Published Properties
@@ -20,13 +20,24 @@ class GameViewModel: ObservableObject {
         "\(game.currentQuestionIndex + 1) / \(game.numberOfQuestions)"
     }
     
-    
     var guessWasMade: Bool {
         if let _ = game.guesses[currentQuestion] {
             return true
         } else {
             return false
         }
+    }
+    
+    var gameIsOver: Bool {
+        game.isOver
+    }
+    
+    var correctGuesses: Int{
+        game.guessCount.correct
+    }
+    
+    var incorrectGuesses: Int{
+        game.guessCount.incorrect
     }
     
     // Internal Methods
@@ -38,11 +49,11 @@ class GameViewModel: ObservableObject {
         game.updateGameStatus()
     }
     
-    func color(forOptionIndex optionIndex: Int)->Color {
+    func color(forOptionIndex optionIndex: Int)-> Color {
         if let guessedIndex = game.guesses[currentQuestion]{
             if guessedIndex != optionIndex {
                 return GameColor.main
-            } else if guessedIndex == optionIndex {
+            } else if guessedIndex == currentQuestion.correctAnswerIndex {
                 return GameColor.correctGuess
             } else {
                 return GameColor.incorrectGuess

@@ -8,11 +8,16 @@
 import Foundation
 
 struct Game {
+    
+    // Private(set) variables
     private(set) var currentQuestionIndex = 0
     private(set) var guesses = [Question: Int]() //can be read but not written from outside
     private(set) var isOver = false
+    
+    // Private variables
     private let questions = Question.allQuestions.shuffled()
     
+    // Computed properties
     var guessCount: (correct: Int, incorrect: Int) {
         var count: (correct: Int, incorrect: Int) = (0, 0)
         for (question, guessedIndex) in guesses {
@@ -32,6 +37,8 @@ struct Game {
     var currentQuestion: Question {
         questions[currentQuestionIndex]
     }
+    
+    // Internal Methods
     
     mutating func makeGuessForCurrentQuestion(atIndex index: Int){
         guesses[currentQuestion] = index

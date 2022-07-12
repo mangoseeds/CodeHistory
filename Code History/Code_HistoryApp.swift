@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Code_HistoryApp: App {
+struct CodeHistoryApp: App {
     var body: some Scene {
         WindowGroup {
             WelcomeView()
